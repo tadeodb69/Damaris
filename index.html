@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Un Mensaje Especial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@1,400&family=Parisienne&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Parisienne', cursive;
+      background: url('assets/fondo.jpg') no-repeat center/cover;
+      overflow: hidden;
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      color: #d63384;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .contenedor { perspective: 1500px; }
+    .envoltura-sobre {
+      position: relative; width: 320px; height: 220px;
+      cursor: pointer;
+      filter: drop-shadow(0px 20px 25px rgba(0,0,0,0.3));
+      animation: latido 2.5s infinite;
+    }
+    @keyframes latido {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .sobre {
+      position: absolute; width: 100%; height: 100%;
+      background: #ffdde1; border-radius: 10px;
+    }
+    .carta {
+      position: fixed; top: 50%; left: 50%;
+      width: 90%; max-width: 400px; height: 70%;
+      transform: translate(-50%, -50%) scale(0.9);
+      opacity: 0; z-index: 2; pointer-events: none;
+      background: url('assets/papel.jpg') no-repeat center/cover;
+      border-radius: 15px; padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      overflow-y: auto;
+    }
+    .envoltura-sobre.abierto .carta {
+      opacity: 1; transform: translate(-50%, -50%) scale(1);
+      pointer-events: auto;
+    }
+    .contenido { color: #333; }
+    .contenido .fecha { text-align: right; font-size: 1rem; font-style: italic; color: #555; margin-bottom: 10px; }
+    .contenido .saludo { font-size: 1.5rem; margin-bottom: 10px; }
+    .contenido .cuerpo { font-size: 1.1rem; margin-bottom: 15px; }
+    .contenido img { max-width: 200px; display: block; margin: 10px auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+    .contenido .firma { text-align: right; font-size: 1.4rem; color: #c91515; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Un Mensaje Especial para Ti</h1>
+    <div class="contenedor">
+      <div class="envoltura-sobre" id="sobre">
+        <div class="sobre"></div>
+        <div class="carta">
+          <div class="contenido">
+            <span class="fecha">Siempre en mi corazón</span>
+            <p class="saludo">Querida Damaris,</p>
+            <p class="cuerpo">Hay personas que llegan a nuestra vida para marcarla para siempre, y tú eres una de ellas. No solo fuiste una amiga, sino alguien que se convirtió en una parte muy especial de mi historia.</p>
+            <img src="assets/amistad.jpg" alt="Recuerdo especial">
+            <p class="cuerpo">Cada recuerdo contigo me trae alegría, y aunque las palabras a veces se quedan cortas, quiero que sepas lo agradecido que estoy por todo lo que compartimos.</p>
+            <p class="cuerpo">Eres alguien invaluable para mí, y siempre tendrás un lugar único en mi vida. 🌹</p>
+            <p class="firma">Con cariño,<br>Tadeo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <audio id="musica" src="https://dl.dropboxusercontent.com/scl/fi/esct592hxwzjyf9a2egpc/Si-supieras-lo-que-siento-con-mirarte....mp3?rlkey=xqbaohnpyd7b3mejkvvdg6dlq&st=2vagx61x&dl=1" autoplay loop></audio>
+  <script>
+    const sobre = document.getElementById("sobre");
+    const musica = document.getElementById("musica");
+    sobre.addEventListener("click", () => {
+      sobre.classList.toggle("abierto");
+      if(sobre.classList.contains("abierto")){
+        musica.play().catch(()=>{});
+      } else {
+        musica.pause(); musica.currentTime = 0;
+      }
+    });
+  </script>
+</body>
+</html>
